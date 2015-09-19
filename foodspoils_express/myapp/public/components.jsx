@@ -6,10 +6,11 @@ var HelloMessage = React.createClass({
 	console.log("in handle click");
 	console.log(e);
 	var pins_state = [];
-	var long = e.latlng.lat;
+	var long = e.latlng.lng;
 	var lat = e.latlng.lat;
+
 	pins_state = this.state.pins;
-	console.log("pins state"+ pins_state);
+	console.log(pins_state);
 	var object ={lat: lat,
 		     long: long};
 	pins_state.push(object);
@@ -18,14 +19,15 @@ var HelloMessage = React.createClass({
 	this.setState({pins: pins_state});
   },
     componentDidMount: function(){
-		var map  = L.map('map').setView([45.5017, -73.5673], 13);
+	var map  = L.map('map').setView([45.5017, -73.5673], 13);
 	this.setState({map: map});
 	console.log("helloworld");
 	var that = this;
 	map.on('click', function(e) {
+	    {
 	     that.handleClick(e);
-	    }
-);
+	    };
+});
 
 
 	
@@ -43,7 +45,7 @@ var HelloMessage = React.createClass({
 	   };
     },
     render: function() {
-      return <div onClick={this.handleClick}>
+      return <div>
       Hello {this.props.name}
       <div className="container-fluid" id="map_container">
 	    <div id="map"></div>
