@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mysql = require('./mysql');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var React = require('react/addons')
@@ -61,5 +63,10 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// receive post input
+app.use(express.bodyParser());
+app.post('/', function(request, response){
+  mysql.addEntry(request);
+});
 
 module.exports = app;
