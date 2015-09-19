@@ -1,5 +1,11 @@
-extends layout
+doctype
+html
+  head
+    title React Server Side Rendering Example
+  body
+    div(id='react-root')!= react
 
-block content
-  h1= title
-  p Welcome to #{title}
+    script(src='http://fb.me/react-with-addons-0.13.1.js')
+    script(src='http://fb.me/JSXTransformer-0.13.1.js')
+
+    script(src='/components.jsx', type='text/jsx')

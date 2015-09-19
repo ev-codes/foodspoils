@@ -7,8 +7,12 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var React = require('react/addons')
+var components = require('./public/components.jsx')
 var app = express();
+
+var HelloMessage = React.createFactory(components.HelloMessage)
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
