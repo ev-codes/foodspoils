@@ -1,11 +1,15 @@
 doctype
 html
   head
+    link(href='/stylesheets/starter-template.css', rel='stylesheet')
+    link(href='http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css', rel='stylesheet')
+
     title React Server Side Rendering Example
   body
     div(id='react-root')!= react
 
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
     script(src='http://fb.me/react-with-addons-0.13.1.js')
     script(src='http://fb.me/JSXTransformer-0.13.1.js')
-
+    script(src='http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js')
     script(src='/components.jsx', type='text/jsx')

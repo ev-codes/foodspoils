@@ -12,6 +12,7 @@ var components = require('./public/components.jsx')
 var app = express();
 
 var HelloMessage = React.createFactory(components.HelloMessage)
+app.use('/css',express.static(path.join(__dirname, 'public/stylesheets')));
 
 
 // view engine setup
