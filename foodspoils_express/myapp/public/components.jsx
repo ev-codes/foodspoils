@@ -5,20 +5,25 @@ var isNode = typeof module !== 'undefined' && module.exports
 var HelloMessage = React.createClass({
   handleClick: function (e) {
     console.log("in handle click");
-    console.log(e);
-    var pins_state = [];
-    var long = e.latlng.lng;
-    var lat = e.latlng.lat;
+      console.log(e);
+      var pins_state = [];
+      var long = e.latlng.lng;
+      var lat = e.latlng.lat;
+      console.log("long" + long);
+      console.log("lat" + lat);
 
-    pins_state = this.state.pins;
-    console.log(pins_state);
-    var object ={lat: lat,
-      long: long};
+
+      var object ={
+	  lat: lat,
+	  long: long
+      };
+      
       pins_state.push(object);
 
+      L.marker(lat, long).addTo(this.state.map);
 
       this.setState({pins: pins_state});
-    },
+  },
     componentDidMount: function(){
       var map  = L.map('map').setView([45.5017, -73.5673], 13);
       this.setState({map: map});
@@ -36,13 +41,13 @@ var HelloMessage = React.createClass({
       }).addTo(map);
       console.log("hello");
 
-      $.get("/entries", function(result) {
-        if (this.isMounted()) {
-          for (var entry in result) {
-            L.marker([entry[latitude], entry[longitude]]).addTo(map);
-          }
-        }
-      }.bind(this));
+      // $.get("/entries", function(result) {
+      //   if (this.isMounted()) {
+      //     for (var entry in result) {
+      //       L.marker([entry[latitude], entry[longitude]]).addTo(map);
+      //     }
+      //   }
+      // }.bind(this));
     },
     getInitialState: function() {
       return {
