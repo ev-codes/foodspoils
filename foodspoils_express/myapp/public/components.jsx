@@ -19,8 +19,8 @@ var HelloMessage = React.createClass({
       };
       
       pins_state.push(object);
+      var marker = L.marker([lat, long]).addTo(this.state.map);
 
-      L.marker(lat, long).addTo(this.state.map);
 
       this.setState({pins: pins_state});
   },
