@@ -1,6 +1,7 @@
 var isNode = typeof module !== 'undefined' && module.exports
 , React = isNode ? require('react/addons') : window.React;
 
+
 var HelloMessage = React.createClass({
   handleClick: function (e) {
     console.log("in handle click");
@@ -74,7 +75,7 @@ var HelloMessage = React.createClass({
                   </ul>
                 </li>
               </ul>
-            </div><!--/.nav-collapse -->
+            </div>
           </div>
         </nav>
 
@@ -118,7 +119,7 @@ var HelloMessage = React.createClass({
       initAutocomplete();
       return (
         <div className="getLocation">
-          <img src="../static/search">
+          <img src="../static/search"/>
             <input id="autocomplete" placeholder="Enter your address" type="text"></input>
             <input id="latitude" type="hidden" name="latitude"></input>
             <input id="longitude" type="hidden" name="longitude"></input>
