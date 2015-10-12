@@ -6,14 +6,26 @@ var mysql      = require('mysql');
    database : 'foodspoils'
  });
 
+function executeSqlQuery(query) {
+  connection.connect();
+  var result = connection.query(query, connectionCallback);
+  connection.end();
+  return result;
+}
 
+function connectionCallback(err, rows, fields) {
+  if (!err)
+    console.log('The solution is: ', rows);
+    return rows;
+  else
+    console.log('Error while performing Query.');
+}
 
-
-
+function getAllEntries() {
+  return executeSqlQuery('SELECT * FROM foodspoils');
+}
 
  function addEntryFromPostRequest(request) {
-
-
    var requestBody = request.body;
    var columnNames = "date_discovered,";
    var valueNames = new Date().toISOString().slice(0, 19).replace('T', ' ') + ",";
@@ -22,17 +34,9 @@ var mysql      = require('mysql');
      valueNames += requestBody[dataName] + ",";
    }
 
-   connection.connect();
-
-   connection.query('INSERT INTO foodspoils (' + columnNames + ') VALUES (' + valueNames + ')', function(err, rows, fields) {
-     if (!err)
-       console.log('The solution is: ', rows);
-     else
-       console.log('Error while performing Query.');
-   });
-
-
-   connection.end();
+   executeSqlQuery('INSERT INTO foodspoils (' + columnNames + ') VALUES ('
+    + valueNames + ')');
  }
 
  module.exports.addEntryFromPostRequest = addEntryFromPostRequest;
+ module.exports.getAllEntries = getAllEntries;
